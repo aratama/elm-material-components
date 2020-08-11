@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "elm-app start",
     "build": "elm-app build"
