@@ -1,8 +1,12 @@
 # elm-material-components
 
-Simple wrapper of [material-components-web-components](https://github.com/material-components/material-components-web-components) for Elm.
+Simple Elm wrapper for [material-components-web-components](https://github.com/material-components/material-components-web-components).
 
 elm-material-components uses `elm/html` style API. It has limited type safety but it is easy to understand. You can reuse `value` or `onClick` attribute from `Html.Attributes` for elements of elm-material-components. Use `Material.Attributes` package for missing attributes in `Html.Attributes`.
+
+## Demo
+
+- [https://elm-material-components.netlify.app/](https://elm-material-components.netlify.app/)
 
 ## Usage
 
@@ -16,3 +20,4 @@ See `examples` for more information.
 
 - [aforemny/material-components-web-elm](https://github.com/aforemny/material-components-web-elm)
 - [aforemny/elm-mdc](https://github.com/aforemny/elm-mdc)
+- [achutkiran/material-components-elm](https://github.com/achutkiran/material-components-elm)
