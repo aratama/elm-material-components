@@ -142,9 +142,9 @@ initialFocusAttribute =
 -- drawer
 
 
-hasHeader : Bool -> Attribute msg
+hasHeader : Attribute msg
 hasHeader =
-    attribute "hasHeader" << bool
+    attribute "hasHeader" ""
 
 
 
@@ -160,3 +160,7 @@ twoline =
 graphic : String -> Attribute msg
 graphic =
     attribute "graphic"
+
+
+
+-- drawer

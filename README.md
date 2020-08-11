@@ -1,6 +1,6 @@
 # elm-material-components
 
-Experimental thin wrapper of [material-components-web-components](https://github.com/material-components/material-components-web-components) for Elm.
+Simple wrapper of [material-components-web-components](https://github.com/material-components/material-components-web-components) for Elm.
 
 elm-material-components uses `elm/html` style API. It has limited type safety but it is easy to understand. You can reuse `value` or `onClick` attribute from `Html.Attributes` for elements of elm-material-components. Use `Material.Attributes` package for missing attributes in `Html.Attributes`.
 

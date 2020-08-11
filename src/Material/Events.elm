@@ -30,3 +30,13 @@ onOpend msg =
 onClosed : msg -> Attribute msg
 onClosed msg =
     on "closed" <| Json.succeed msg
+
+
+onDrawerOpend : msg -> Attribute msg
+onDrawerOpend msg =
+    on "MDCDrawer:opened" <| Json.succeed msg
+
+
+onDrawerClosed : msg -> Attribute msg
+onDrawerClosed msg =
+    on "MDCDrawer:closed" <| Json.succeed msg

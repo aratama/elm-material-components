@@ -77,3 +77,8 @@ appContent =
 icon : Slot
 icon =
     Slot "icon"
+
+
+navigationIcon : Slot
+navigationIcon =
+    Slot "navigationIcon"
