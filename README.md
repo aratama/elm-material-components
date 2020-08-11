@@ -28,7 +28,7 @@ material-components-web-components is not on Elm Packeges yet. To install it, ex
 
 This package is a just a thin wrapper and don't include JavaScript codes of original material-components-web-components. You also need to do command such as `npm install @material/mwc-button` to install original material-components-web-components. Don't forget to add `import "@material/mwc-button";` into your `index.js`.
 
-See `examples` for more information.
+See also [package.json](examples/package.json) and [`index.js`](examples/src/index.js).
 
 ## See also
 
