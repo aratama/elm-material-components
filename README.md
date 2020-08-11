@@ -8,6 +8,20 @@ elm-material-components uses `elm/html` style API. It has limited type safety bu
 
 - [https://elm-material-components.netlify.app/](https://elm-material-components.netlify.app/)
 
+## Example
+
+```elm
+view : Model -> Html Msg
+view model =
+    div []
+        [ button [ raised, label "Hello", onClick Click] []
+        , switch [] []
+        , textfield [ value model.textFieldValue, onInput Change, label "textfield" ]
+        ]
+```
+
+See [examples](examples/src/Main.elm) for more information.
+
 ## Usage
 
 material-components-web-components is not on Elm Packeges yet. To install it, execute `npm install aratama/material-components-web-components` and add `node_modules/material-components-web-components/src` into your `elm.json`.
