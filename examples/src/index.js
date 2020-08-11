@@ -30,7 +30,7 @@ import "@material/mwc-top-app-bar";
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-textfield";
 
-Elm.Main.init({
+const elm = Elm.Main.init({
   node: document.getElementById("root"),
 });
 
@@ -38,3 +38,7 @@ Elm.Main.init({
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+elm.ports.showSnackbar.subscribe((selector) => {
+  document.querySelector(selector).show();
+});

@@ -164,3 +164,9 @@ graphic =
 
 
 -- drawer
+-- snackbar
+
+
+labelText : String -> Attribute msg
+labelText =
+    attribute "labelText"

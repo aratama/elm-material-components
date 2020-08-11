@@ -2,12 +2,13 @@ module Main exposing (..)
 
 import Browser
 import Html exposing (Html, div, h1, h2, header, img, span, text)
-import Html.Attributes exposing (checked, class, src, type_, value)
+import Html.Attributes exposing (checked, class, id, max, min, name, src, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
-import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, textfield, topAppBar)
-import Material.Attributes exposing (graphic, hasHeader, icon, indeterminate, label, open, raised, twoline)
+import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, radio, select, slider, snackbar, switch, tab, tabBar, textarea, textfield, topAppBar)
+import Material.Attributes exposing (graphic, hasHeader, icon, indeterminate, label, labelText, open, raised, twoline)
 import Material.Events exposing (onClosed, onDrawerClosed)
 import Material.Slots exposing (Slot(..), appContent, navigationIcon, slot, subtitle, title)
+import Port exposing (showSnackbar)
 
 
 
@@ -45,6 +46,7 @@ type Msg
     | DialogClosed
     | OpenDrawer
     | DrawerClosed
+    | ShowSnackbar String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -71,6 +73,9 @@ update msg model =
         DrawerClosed ->
             ( { model | drawerOpen = False }, Cmd.none )
 
+        ShowSnackbar selector ->
+            ( model, Port.showSnackbar selector )
+
 
 
 ---- VIEW ----
@@ -89,7 +94,7 @@ view model =
                 ]
             , div [ class "content" ]
                 [ h2 [] [ text "Button" ]
-                , div [] [ button [ label "Hello", onClick Click ] [] ]
+                , div [] [ button [ raised, label "Hello", onClick Click ] [] ]
                 , div [] [ iconButton [ icon "code", onClick Click ] [] ]
                 , h2 [] [ text "Checkbox / Formfield" ]
                 , formfield [ label "Checked" ] [ checkbox [ checked model.checked, onCheck Check ] [] ]
@@ -114,17 +119,30 @@ view model =
                     ]
                 , h2 [] [ text "Menu" ]
                 , h2 [] [ text "Radio" ]
+                , div [] [ radio [ name "radio-group", value "left" ] [], radio [ name "radio-group", value "left", checked True ] [] ]
                 , h2 [] [ text "Select" ]
+                , select []
+                    [ listItem [] [ text "Apple" ]
+                    , listItem [] [ text "Grape" ]
+                    , listItem [] [ text "Melon" ]
+                    ]
                 , h2 [] [ text "Slieder" ]
+                , slider [ Html.Attributes.min "0", Html.Attributes.max "100", value "50" ] []
                 , h2 [] [ text "snackbar" ]
+                , snackbar [ id "message", labelText "Hello from snackbar!" ] []
+                , div [] [ button [ raised, label "Show Snackbar", onClick (ShowSnackbar "#message") ] [] ]
                 , h2 [] [ text "switch" ]
-                , h2 [] [ text "tab" ]
-                , h2 [] [ text "tab bar" ]
+                , switch [] []
+                , h2 [] [ text "tab / tab-bar" ]
+                , tabBar []
+                    [ tab [ label "Tab one" ] []
+                    , tab [ label "Tab two" ] []
+                    , tab [ label "Tab three" ] []
+                    ]
                 , h2 [] [ text "textarea" ]
+                , textarea [ label "textarea" ] []
                 , h2 [] [ text "Textfield" ]
                 , div [] [ textfield [ value model.textFieldValue, onInput Change, label "label" ] [] ]
-                , h2 [] [ text "top-app-bar" ]
-                , h2 [] [ text "top-app-bar-fixed" ]
                 ]
             ]
         ]
