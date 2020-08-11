@@ -5,6 +5,8 @@ import "regenerator-runtime/runtime";
 import "@material/mwc-button";
 import "@material/mwc-textfield";
 import "@material/mwc-checkbox";
+import "@material/mwc-list";
+import "@material/mwc-list/mwc-list-item";
 
 Elm.Main.init({
   node: document.getElementById("root"),

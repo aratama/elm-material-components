@@ -203,3 +203,17 @@ appContent =
 hasHeader : Bool -> Attribute msg
 hasHeader =
     attribute "hasHeader" << bool
+
+
+
+---
+
+
+twoline : Attribute msg
+twoline =
+    attribute "twoline" ""
+
+
+graphic : String -> Attribute msg
+graphic =
+    attribute "graphic"

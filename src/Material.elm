@@ -68,6 +68,11 @@ list =
     node "mwc-list"
 
 
+listItem : List (Attribute msg) -> List (Html msg) -> Html msg
+listItem =
+    node "mwc-list-item"
+
+
 menu : List (Attribute msg) -> List (Html msg) -> Html msg
 menu =
     node "mwc-menu"
