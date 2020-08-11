@@ -22,15 +22,11 @@ onChangeWithIndeterminate tagger =
 -- drawer
 
 
-onOpend : (Bool -> msg) -> Attribute msg
-onOpend tagger =
-    on "MDCDrawer:opened" <|
-        Json.map tagger <|
-            Json.at [ "target", "open" ] Json.bool
+onOpend : msg -> Attribute msg
+onOpend msg =
+    on "opened" <| Json.succeed msg
 
 
-onClosed : (Bool -> msg) -> Attribute msg
-onClosed tagger =
-    on "MDCDrawer:closed" <|
-        Json.map tagger <|
-            Json.at [ "target", "open" ] Json.bool
+onClosed : msg -> Attribute msg
+onClosed msg =
+    on "closed" <| Json.succeed msg

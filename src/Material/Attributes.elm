@@ -14,19 +14,6 @@ bool v =
 
 
 
--- slot
-
-
-type Slot
-    = Slot String
-
-
-slot : Slot -> Attribute msg
-slot (Slot name) =
-    attribute "slot" name
-
-
-
 -- button
 
 
@@ -100,32 +87,15 @@ closed =
 
 
 -- circular-progress-four-color
--- dialog
-
-
-{-|
-
-    A focusable and clickable target. Typically a button such as <mwc-button>. Placed on the bottom right of the dialog (LTR) and above the secondary action when stacked. Automatically clicked when Enter key is pressed in the dialog.
-
--}
-primaryAction : Slot
-primaryAction =
-    Slot "primaryAction"
-
-
-{-|
-
-    A focusable and clickable target. Typically a button such as <mwc-button>. Placed immediately to the left of the primaryAction (LTR) or below when stacked.
-
--}
-secondaryAction : Slot
-secondaryAction =
-    Slot "secondaryAction"
 
 
 open : Bool -> Attribute msg
-open =
-    attribute "open" << bool
+open v =
+    if v then
+        attribute "open" ""
+
+    else
+        attribute "data-closed" ""
 
 
 hideActions : Bool -> Attribute msg
@@ -172,40 +142,13 @@ initialFocusAttribute =
 -- drawer
 
 
-{-| Header title to display in the drawer when hasHeader is true.
--}
-title : Slot
-title =
-    Slot "title"
-
-
-{-| Header subtitle to display in the drawer when hasHeader is true.
--}
-subtitle : Slot
-subtitle =
-    Slot "subtitle"
-
-
-{-| Additional header elements to display in the drawer.
--}
-header : Slot
-header =
-    Slot "header"
-
-
-{-| Elements to display in the "app content" to the right of, or under, the drawer.
--}
-appContent : Slot
-appContent =
-    Slot "appContent"
-
-
 hasHeader : Bool -> Attribute msg
 hasHeader =
     attribute "hasHeader" << bool
 
 
 
+-- fab
 ---
 
 
