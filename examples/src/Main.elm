@@ -4,7 +4,7 @@ import Browser
 import Html exposing (Html, div, h1, h2, header, img, span, text)
 import Html.Attributes exposing (checked, class, src, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
-import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, iconButton, list, listItem, textfield, topAppBar)
+import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, textfield, topAppBar)
 import Material.Attributes exposing (graphic, hasHeader, icon, indeterminate, label, open, raised, twoline)
 import Material.Events exposing (onClosed, onDrawerClosed)
 import Material.Slots exposing (Slot(..), appContent, navigationIcon, slot, subtitle, title)
@@ -89,12 +89,10 @@ view model =
                 ]
             , div [ class "content" ]
                 [ h2 [] [ text "Button" ]
-                , button [ label "Hello", onClick Click ] []
-                , h2 [] [ text "Textfield" ]
-                , div [] [ textfield [ value model.textFieldValue, onInput Change, label "label" ] [] ]
-                , div [] [ textfield [ type_ "search", value model.textFieldValue, onInput Change ] [] ]
-                , h2 [] [ text "Checkbox" ]
-                , checkbox [ checked model.checked, onCheck Check ] []
+                , div [] [ button [ label "Hello", onClick Click ] [] ]
+                , div [] [ iconButton [ icon "code", onClick Click ] [] ]
+                , h2 [] [ text "Checkbox / Formfield" ]
+                , formfield [ label "Checked" ] [ checkbox [ checked model.checked, onCheck Check ] [] ]
                 , h2 [] [ text "Circular Progress" ]
                 , circularProgress [ indeterminate True ] []
                 , h2 [] [ text "Circular Progress Four Color" ]
@@ -102,6 +100,31 @@ view model =
                 , h2 [] [ text "Dialog" ]
                 , dialog [ open model.showDialog, onClosed DialogClosed ] []
                 , button [ raised, label "Show Dialog", onClick ShowDialog ] []
+                , h2 [] [ text "Floating Icon Button (fab)" ]
+                , fab [ icon "edit" ] []
+                , h2 [] [ text "Icon" ]
+                , Material.icon [] [ text "shopping_cart" ]
+                , h2 [] [ text "Linear Progress" ]
+                , linearProgress [ indeterminate True ] []
+                , h2 [] [ text "List" ]
+                , list []
+                    [ listItem [] [ text "Apple" ]
+                    , listItem [] [ text "Grape" ]
+                    , listItem [] [ text "Melon" ]
+                    ]
+                , h2 [] [ text "Menu" ]
+                , h2 [] [ text "Radio" ]
+                , h2 [] [ text "Select" ]
+                , h2 [] [ text "Slieder" ]
+                , h2 [] [ text "snackbar" ]
+                , h2 [] [ text "switch" ]
+                , h2 [] [ text "tab" ]
+                , h2 [] [ text "tab bar" ]
+                , h2 [] [ text "textarea" ]
+                , h2 [] [ text "Textfield" ]
+                , div [] [ textfield [ value model.textFieldValue, onInput Change, label "label" ] [] ]
+                , h2 [] [ text "top-app-bar" ]
+                , h2 [] [ text "top-app-bar-fixed" ]
                 ]
             ]
         ]
