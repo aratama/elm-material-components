@@ -1,0 +1,23 @@
+{
+  "name": "material",
+  "version": "1.0.0",
+  "description": "This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "elm-app start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material/mwc-button": "^0.18.0",
+    "@material/mwc-checkbox": "^0.18.0",
+    "@material/mwc-textfield": "^0.18.0",
+    "@webcomponents/webcomponentsjs": "^2.4.4",
+    "create-elm-app": "^4.2.26",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
