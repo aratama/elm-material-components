@@ -40,3 +40,17 @@ onDrawerOpend msg =
 onDrawerClosed : msg -> Attribute msg
 onDrawerClosed msg =
     on "MDCDrawer:closed" <| Json.succeed msg
+
+
+
+-- slider
+
+
+onInput : (Float -> msg) -> Attribute msg
+onInput tagger =
+    on "input" (Json.map tagger targetValue)
+
+
+targetValue : Json.Decoder Float
+targetValue =
+    Json.at [ "target", "value" ] Json.float

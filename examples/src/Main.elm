@@ -2,10 +2,10 @@ module Main exposing (..)
 
 import Browser
 import Html exposing (Html, div, h1, h2, header, img, span, text)
-import Html.Attributes exposing (checked, class, id, max, min, name, src, type_, value)
+import Html.Attributes exposing (attribute, checked, class, disabled, id, max, min, name, src, style, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
-import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, radio, select, slider, snackbar, switch, tab, tabBar, textarea, textfield, topAppBar)
-import Material.Attributes exposing (graphic, hasHeader, icon, indeterminate, label, labelText, open, raised, twoline)
+import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, menu, radio, select, slider, snackbar, switch, tab, tabBar, textarea, textfield, topAppBar)
+import Material.Attributes exposing (dense, dialogAction, graphic, hasHeader, icon, indeterminate, label, labelText, max, menuOpen, open, outlined, raised, twoline, unelevated)
 import Material.Events exposing (onClosed, onDrawerClosed)
 import Material.Slots exposing (Slot(..), appContent, navigationIcon, slot, subtitle, title)
 import Port exposing (showSnackbar)
@@ -20,6 +20,8 @@ type alias Model =
     , checked : Bool
     , showDialog : Bool
     , drawerOpen : Bool
+    , slider : Int
+    , menuOpen : Bool
     }
 
 
@@ -29,6 +31,8 @@ init =
       , checked = False
       , showDialog = False
       , drawerOpen = False
+      , slider = 50
+      , menuOpen = False
       }
     , Cmd.none
     )
@@ -45,8 +49,11 @@ type Msg
     | ShowDialog
     | DialogClosed
     | OpenDrawer
+    | OpenMenu
     | DrawerClosed
+    | MenuClosed
     | ShowSnackbar String
+    | SliderInput Float
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -70,11 +77,20 @@ update msg model =
         OpenDrawer ->
             ( { model | drawerOpen = True }, Cmd.none )
 
+        OpenMenu ->
+            ( { model | menuOpen = True }, Cmd.none )
+
         DrawerClosed ->
             ( { model | drawerOpen = False }, Cmd.none )
 
+        MenuClosed ->
+            ( { model | menuOpen = False }, Cmd.none )
+
         ShowSnackbar selector ->
             ( model, Port.showSnackbar selector )
+
+        SliderInput v ->
+            ( { model | slider = floor v }, Cmd.none )
 
 
 
@@ -93,31 +109,54 @@ view model =
                 , div [ slot title ] [ text "elm-material-components" ]
                 ]
             , div [ class "content" ]
-                [ h2 [] [ text "Button" ]
-                , div [] [ button [ raised, label "Hello", onClick Click ] [] ]
-                , div [] [ iconButton [ icon "code", onClick Click ] [] ]
+                [ h2 [] [ text "Button / Floating Action Button / Icon Button" ]
+                , div [ class "row" ]
+                    [ button [ label "Regular", onClick Click ] []
+                    , button [ outlined, label "Outlined", onClick Click ] []
+                    , button [ raised, label "Raised", onClick Click ] []
+                    , button [ unelevated, label "Unelevated", onClick Click ] []
+                    , button [ dense, label "Dense", onClick Click ] []
+                    , button [ raised, disabled True, label "Disabled", onClick Click ] []
+                    ]
+                , div [ class "row" ]
+                    [ fab [ icon "edit" ] []
+                    , iconButton [ icon "code", onClick Click ] []
+                    ]
                 , h2 [] [ text "Checkbox / Formfield" ]
                 , formfield [ label "Checked" ] [ checkbox [ checked model.checked, onCheck Check ] [] ]
-                , h2 [] [ text "Circular Progress" ]
+                , h2 [] [ text "Circular Progress / Circular Progress Four Color" ]
                 , circularProgress [ indeterminate True ] []
-                , h2 [] [ text "Circular Progress Four Color" ]
                 , circularProgressFourColor [ indeterminate True ] []
-                , h2 [] [ text "Dialog" ]
-                , dialog [ open model.showDialog, onClosed DialogClosed ] []
-                , button [ raised, label "Show Dialog", onClick ShowDialog ] []
-                , h2 [] [ text "Floating Icon Button (fab)" ]
-                , fab [ icon "edit" ] []
-                , h2 [] [ text "Icon" ]
-                , Material.icon [] [ text "shopping_cart" ]
                 , h2 [] [ text "Linear Progress" ]
                 , linearProgress [ indeterminate True ] []
+                , h2 [] [ text "Dialog / Snackbar / Menu" ]
+                , div [ class "row" ]
+                    [ button [ raised, label "Show Dialog", onClick ShowDialog ] []
+                    , button [ raised, label "Show Snackbar", onClick (ShowSnackbar "#message") ] []
+                    , div [ style "position" "relative" ]
+                        [ button [ id "button", raised, label "Open Menu", onClick OpenMenu ] []
+                        , menu [ id "menu", menuOpen model.menuOpen, onClosed MenuClosed ]
+                            [ listItem [] [ text "Item 0" ]
+                            , listItem [] [ text "Item 1" ]
+                            , listItem [] [ text "Item 2" ]
+                            , listItem [] [ text "Item 3" ]
+                            ]
+                        ]
+                    , dialog [ open model.showDialog, onClosed DialogClosed ]
+                        [ div [] [ text "Discard draft?" ]
+                        , button [ slot <| Slot "primaryAction", dialogAction "discard" ] [ text "Discard" ]
+                        , button [ slot <| Slot "secondaryAction", dialogAction "cancel" ] [ text "Cancel" ]
+                        ]
+                    , snackbar [ id "message", labelText "Hello from snackbar!" ] []
+                    ]
+                , h2 [] [ text "Icon" ]
+                , Material.icon [] [ text "shopping_cart" ]
                 , h2 [] [ text "List" ]
                 , list []
                     [ listItem [] [ text "Apple" ]
                     , listItem [] [ text "Grape" ]
                     , listItem [] [ text "Melon" ]
                     ]
-                , h2 [] [ text "Menu" ]
                 , h2 [] [ text "Radio" ]
                 , div [] [ radio [ name "radio-group", value "left" ] [], radio [ name "radio-group", value "left", checked True ] [] ]
                 , h2 [] [ text "Select" ]
@@ -127,22 +166,29 @@ view model =
                     , listItem [] [ text "Melon" ]
                     ]
                 , h2 [] [ text "Slieder" ]
-                , slider [ Html.Attributes.min "0", Html.Attributes.max "100", value "50" ] []
-                , h2 [] [ text "snackbar" ]
-                , snackbar [ id "message", labelText "Hello from snackbar!" ] []
-                , div [] [ button [ raised, label "Show Snackbar", onClick (ShowSnackbar "#message") ] [] ]
+                , div [ class "row" ]
+                    [ slider
+                        [ Material.Attributes.min "0"
+                        , Material.Attributes.max "100"
+                        , Material.Attributes.value <| String.fromInt model.slider
+                        , Material.Events.onInput SliderInput
+                        ]
+                        []
+                    , span [] [ text <| String.fromInt model.slider ]
+                    ]
                 , h2 [] [ text "switch" ]
                 , switch [] []
-                , h2 [] [ text "tab / tab-bar" ]
+                , h2 [] [ text "Tab" ]
                 , tabBar []
                     [ tab [ label "Tab one" ] []
                     , tab [ label "Tab two" ] []
                     , tab [ label "Tab three" ] []
                     ]
-                , h2 [] [ text "textarea" ]
-                , textarea [ label "textarea" ] []
-                , h2 [] [ text "Textfield" ]
-                , div [] [ textfield [ value model.textFieldValue, onInput Change, label "label" ] [] ]
+                , h2 [] [ text "Textarea / Textfield" ]
+                , div [ class "row" ]
+                    [ textarea [ label "textarea" ] []
+                    , textfield [ value model.textFieldValue, onInput Change, label "textfield" ] []
+                    ]
                 ]
             ]
         ]
