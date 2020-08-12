@@ -82,3 +82,36 @@ icon =
 navigationIcon : Slot
 navigationIcon =
     Slot "navigationIcon"
+
+
+
+-- icon-button-toggle
+
+
+onIcon : Slot
+onIcon =
+    Slot "onIcon"
+
+
+offIcon : Slot
+offIcon =
+    Slot "offIcon"
+
+
+
+-- list
+
+
+graphic : Slot
+graphic =
+    Slot "graphic"
+
+
+meta : Slot
+meta =
+    Slot "meta"
+
+
+secondary : Slot
+secondary =
+    Slot "secondary"
