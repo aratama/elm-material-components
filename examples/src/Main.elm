@@ -5,7 +5,7 @@ import Html exposing (Html, div, h1, h2, header, img, span, text)
 import Html.Attributes exposing (attribute, checked, class, disabled, id, max, min, name, src, style, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
 import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, menu, radio, select, slider, snackbar, switch, tab, tabBar, textarea, textfield, topAppBar)
-import Material.Attributes exposing (dense, dialogAction, graphic, hasHeader, icon, indeterminate, label, labelText, max, menuOpen, open, outlined, raised, twoline, unelevated)
+import Material.Attributes exposing (dense, dialogAction, graphic, hasHeader, icon, indeterminate, label, labelText, max, open, outlined, raised, twoline, unelevated)
 import Material.Events exposing (onClosed, onDrawerClosed)
 import Material.Slots exposing (Slot(..), appContent, navigationIcon, slot, subtitle, title)
 import Port exposing (showSnackbar)
@@ -43,8 +43,7 @@ init =
 
 
 type Msg
-    = Click
-    | Change String
+    = Change String
     | Check Bool
     | ShowDialog
     | DialogClosed
@@ -59,9 +58,6 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Click ->
-            ( model, Cmd.none )
-
         Change str ->
             ( { model | textFieldValue = str }, Cmd.none )
 
@@ -111,22 +107,24 @@ view model =
             , div [ class "content" ]
                 [ h2 [] [ text "Button / Floating Action Button / Icon Button" ]
                 , div [ class "row" ]
-                    [ button [ label "Regular", onClick Click ] []
-                    , button [ outlined, label "Outlined", onClick Click ] []
-                    , button [ raised, label "Raised", onClick Click ] []
-                    , button [ unelevated, label "Unelevated", onClick Click ] []
-                    , button [ dense, label "Dense", onClick Click ] []
-                    , button [ raised, disabled True, label "Disabled", onClick Click ] []
+                    [ button [ label "Regular" ] []
+                    , button [ outlined, label "Outlined" ] []
+                    , button [ raised, label "Raised" ] []
+                    , button [ unelevated, label "Unelevated" ] []
+                    , button [ dense, label "Dense" ] []
+                    , button [ raised, disabled True, label "Disabled" ] []
                     ]
                 , div [ class "row" ]
                     [ fab [ icon "edit" ] []
-                    , iconButton [ icon "code", onClick Click ] []
+                    , iconButton [ icon "code" ] []
                     ]
                 , h2 [] [ text "Checkbox / Formfield" ]
                 , formfield [ label "Checked" ] [ checkbox [ checked model.checked, onCheck Check ] [] ]
                 , h2 [] [ text "Circular Progress / Circular Progress Four Color" ]
-                , circularProgress [ indeterminate True ] []
-                , circularProgressFourColor [ indeterminate True ] []
+                , div [ class "row" ]
+                    [ circularProgress [ indeterminate True ] []
+                    , circularProgressFourColor [ indeterminate True ] []
+                    ]
                 , h2 [] [ text "Linear Progress" ]
                 , linearProgress [ indeterminate True ] []
                 , h2 [] [ text "Dialog / Snackbar / Menu" ]
@@ -135,7 +133,7 @@ view model =
                     , button [ raised, label "Show Snackbar", onClick (ShowSnackbar "#message") ] []
                     , div [ style "position" "relative" ]
                         [ button [ id "button", raised, label "Open Menu", onClick OpenMenu ] []
-                        , menu [ id "menu", menuOpen model.menuOpen, onClosed MenuClosed ]
+                        , menu [ id "menu", open model.menuOpen, onClosed MenuClosed ]
                             [ listItem [] [ text "Item 0" ]
                             , listItem [] [ text "Item 1" ]
                             , listItem [] [ text "Item 2" ]

@@ -195,15 +195,6 @@ max =
 -- menu
 
 
-menuOpen : Bool -> Attribute msg
-menuOpen v =
-    if v then
-        attribute "open" "true"
-
-    else
-        attribute "data-empty" ""
-
-
 dialogAction : String -> Attribute msg
 dialogAction =
     attribute "dialogAction"
