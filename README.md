@@ -11,22 +11,28 @@ elm-material-components uses `elm/html` style API. It has limited type safety bu
 ## Example
 
 ```elm
+import Html exposing (div)
+import Html.Attributes exposing (label, value)
+import Html.Events exposing (onClick, onInput)
+import Material exposing (button, switch, textfield)
+import Material.Attributes exposing (raised)
+
 view : Model -> Html Msg
 view model =
     div []
         [ button [ raised, label "Hello", onClick Click] []
         , switch [] []
-        , textfield [ value model.textFieldValue, onInput Change, label "textfield" ]
+        , textfield [ value model.textFieldValue, onInput Input, label "textfield" ]
         ]
 ```
 
 See [examples](examples/src/Main.elm) for more information.
 
-## Usage
+## Installation
 
 material-components-web-components is not on Elm Packeges yet. To install it, execute `npm install aratama/material-components-web-components` and add `node_modules/material-components-web-components/src` into your `elm.json`.
 
-This package is a just a thin wrapper and don't include JavaScript codes of original material-components-web-components. You also need to do command such as `npm install @material/mwc-button` to install original material-components-web-components. Don't forget to add `import "@material/mwc-button";` into your `index.js`.
+This package is just a thin wrapper and don't include any JavaScript codes of original material-components-web-components. Therefore, if you want to use `Material.button`, you need to do `npm install @material/mwc-button` to install original codes of material-components-web-components. Also you should add `import "@material/mwc-button";` into your `index.js`. See [material-components-web-components](https://github.com/material-components/material-components-web-components) docs for more information of installation.
 
 See also [package.json](examples/package.json) and [`index.js`](examples/src/index.js).
 
