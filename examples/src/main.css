@@ -57,8 +57,12 @@ h2 {
   margin-top: 80px;
 }
 
-/* Bug workaround for mwc-dialog scrollbar */
+/* Bug workaround for mwc-dialog scrollbar :( */
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
+}
+
+:root {
+  --mdc-theme-primary: rgb(54, 83, 72);
 }
