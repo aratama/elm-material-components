@@ -1,6 +1,8 @@
 # elm-material-components
 
-**elm-material-components** is yet another Material Components library for Elm. It is simple wrapper for [material-components-web-components](https://github.com/material-components/material-components-web-components).
+![screenshot](elm-material-components.netlify.app_.png)
+
+**elm-material-components** is yet another Material Components library for Elm. It is a simple wrapper for [material-components-web-components](https://github.com/material-components/material-components-web-components).
 
 elm-material-components has classical `elm/html` style API. It has limited type safety but it is easy to understand. You can reuse `value` or `onClick` attribute from `Html.Attributes` for elements of elm-material-components. Use `Material.Attributes` package for missing attributes in `Html.Attributes`.
 
@@ -30,11 +32,11 @@ See [examples](examples/src/Main.elm) for more information.
 
 ## Installation
 
-material-components-web-components is not on Elm Packeges yet. To install it, execute `npm install aratama/material-components-web-components` and add `node_modules/material-components-web-components/src` into your `elm.json`.
+elm-material-components is not on Elm Packeges yet. To install it, execute `npm install aratama/elm-material-components` and add `node_modules/elm-material-components/src` into your `elm.json`. You may also need to install `elm/virtual-dom` and `elm/json`.
 
-This package is just a thin wrapper and don't include any JavaScript codes of original material-components-web-components. Therefore, if you want to use `Material.button`, you need to do `npm install @material/mwc-button` to install original codes of material-components-web-components. Also you should add `import "@material/mwc-button";` into your `index.js`. See [material-components-web-components](https://github.com/material-components/material-components-web-components) docs for more information of installation.
+This package is just a thin wrapper and don't include any JavaScript codes. Therefore, for example, if you want to use `Material.button`, you need to do `npm install @material/mwc-button` to install original codes of material-components-web-components. Also you should add `import "@material/mwc-button";` into your `index.js`. See [material-components-web-components](https://github.com/material-components/material-components-web-components) docs for more information of installation.
 
-See also [package.json](examples/package.json) and [`index.js`](examples/src/index.js).
+See also [example/package.json](examples/package.json) and [`example/src/index.js`](examples/src/index.js).
 
 ## See also
 
