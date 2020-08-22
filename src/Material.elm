@@ -61,7 +61,20 @@ module Material exposing
 import Html exposing (Attribute, Html, node)
 
 
-{-| -}
+{-| `<mwc-button>`. See [the docs](https://github.com/material-components/material-components-web-components/tree/master/packages/button) for more detail.
+
+
+# Example Usage
+
+![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/standard.png)
+![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/standard_with_icon.png)
+
+```
+button [label "standard"] []
+button [label "standard", icon "code"] []
+```
+
+-}
 button : List (Attribute msg) -> List (Html msg) -> Html msg
 button =
     node "mwc-button"
