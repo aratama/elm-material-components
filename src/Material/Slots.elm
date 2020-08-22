@@ -1,4 +1,22 @@
-module Material.Slots exposing (..)
+module Material.Slots exposing
+    ( Slot(..)
+    , action
+    , appContent
+    , dismiss
+    , graphic
+    , header
+    , icon
+    , meta
+    , navigationIcon
+    , offIcon
+    , onIcon
+    , primaryAction
+    , secondary
+    , secondaryAction
+    , slot
+    , subtitle
+    , title
+    )
 
 import Html exposing (Attribute)
 import Html.Attributes exposing (attribute)

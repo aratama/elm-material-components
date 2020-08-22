@@ -1,4 +1,11 @@
-module Material.Graphic exposing (..)
+module Material.Graphic exposing
+    ( Graphic(..)
+    , avatar
+    , control
+    , icon
+    , large
+    , medium
+    )
 
 
 type Graphic

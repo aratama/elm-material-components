@@ -1,4 +1,22 @@
-module Material.Events exposing (..)
+module Material.Events exposing
+    ( onAction
+    , onChangeWithIndeterminate
+    , onClosed
+    , onDrawerClosed
+    , onDrawerOpend
+    , onIconButtonToggleChange
+    , onInput
+    , onOpend
+    , onRequestSelected
+    , onSelected
+    , onSnackbarClosed
+    , onSnackbarClosing
+    , onSnackbarOpend
+    , onSnackbarOpening
+    , onTabBarActivated
+    , onTabInteracted
+    , onTopAppBarNav
+    )
 
 import Html exposing (Attribute)
 import Html.Events exposing (on)

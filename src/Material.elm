@@ -1,4 +1,31 @@
-module Material exposing (..)
+module Material exposing
+    ( button
+    , checkbox
+    , circularProgress
+    , circularProgressFourColor
+    , dialog
+    , drawer
+    , fab
+    , formfield
+    , icon
+    , iconButton
+    , iconButtonToggle
+    , linearProgress
+    , list
+    , listItem
+    , menu
+    , radio
+    , select
+    , slider
+    , snackbar
+    , switch
+    , tab
+    , tabBar
+    , textarea
+    , textfield
+    , topAppBar
+    , topAppBarFixed
+    )
 
 import Html exposing (Attribute, Html, node)
 
