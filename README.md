@@ -40,6 +40,7 @@ See also [example/package.json](examples/package.json) and [`example/src/index.j
 
 ## See also
 
+- [material-components-web-components](https://github.com/material-components/material-components-web-components)
 - [aforemny/material-components-web-elm](https://github.com/aforemny/material-components-web-elm)
 - [aforemny/elm-mdc](https://github.com/aforemny/elm-mdc)
 - [achutkiran/material-components-elm](https://github.com/achutkiran/material-components-elm)
