@@ -7,16 +7,46 @@ module Material.Events exposing
     , onIconButtonToggleChange
     , onInput
     , onOpend
+    , RequestSelectedDetail
     , onRequestSelected
     , onSelected
+    , SnackbarDetail
     , onSnackbarClosed
     , onSnackbarClosing
     , onSnackbarOpend
     , onSnackbarOpening
+    , TabBarDetail
     , onTabBarActivated
+    , TabDetail
     , onTabInteracted
     , onTopAppBarNav
     )
+
+{-|
+
+@docs onAction
+@docs onChangeWithIndeterminate
+@docs onClosed
+@docs onDrawerClosed
+@docs onDrawerOpend
+@docs onIconButtonToggleChange
+@docs onInput
+@docs onOpend
+@docs RequestSelectedDetail
+@docs onRequestSelected
+@docs onSelected
+@docs SnackbarDetail
+@docs onSnackbarClosed
+@docs onSnackbarClosing
+@docs onSnackbarOpend
+@docs onSnackbarOpening
+@docs TabBarDetail
+@docs onTabBarActivated
+@docs TabDetail
+@docs onTabInteracted
+@docs onTopAppBarNav
+
+-}
 
 import Html exposing (Attribute)
 import Html.Events exposing (on)
@@ -27,6 +57,7 @@ import Json.Decode as Json
 -- checkbox
 
 
+{-| -}
 onChangeWithIndeterminate : (Bool -> Bool -> msg) -> Attribute msg
 onChangeWithIndeterminate tagger =
     on "change" <|
@@ -39,21 +70,25 @@ onChangeWithIndeterminate tagger =
 -- drawer
 
 
+{-| -}
 onOpend : msg -> Attribute msg
 onOpend =
     on "opened" << Json.succeed
 
 
+{-| -}
 onClosed : msg -> Attribute msg
 onClosed =
     on "closed" << Json.succeed
 
 
+{-| -}
 onDrawerOpend : msg -> Attribute msg
 onDrawerOpend =
     on "MDCDrawer:opened" << Json.succeed
 
 
+{-| -}
 onDrawerClosed : msg -> Attribute msg
 onDrawerClosed =
     on "MDCDrawer:closed" << Json.succeed
@@ -63,11 +98,13 @@ onDrawerClosed =
 -- slider
 
 
+{-| -}
 onInput : (Float -> msg) -> Attribute msg
 onInput tagger =
     on "input" (Json.map tagger targetValue)
 
 
+{-| -}
 targetValue : Json.Decoder Float
 targetValue =
     Json.at [ "target", "value" ] Json.float
@@ -77,6 +114,7 @@ targetValue =
 -- icon-button-toggle
 
 
+{-| -}
 onIconButtonToggleChange : msg -> Attribute msg
 onIconButtonToggleChange =
     on "MDCIconButtonToggle:change" << Json.succeed
@@ -86,11 +124,13 @@ onIconButtonToggleChange =
 -- list
 
 
+{-| -}
 onAction : (Int -> msg) -> Attribute msg
 onAction tagger =
     on "action" (Json.map tagger (Json.at [ "detail", "index" ] Json.int))
 
 
+{-| -}
 onSelected : (Int -> msg) -> Attribute msg
 onSelected tagger =
     on "selected" (Json.map tagger (Json.at [ "detail", "index" ] Json.int))
@@ -100,12 +140,14 @@ onSelected tagger =
 -- list-item
 
 
+{-| -}
 type alias RequestSelectedDetail =
     { selected : Bool
     , source : String
     }
 
 
+{-| -}
 requestSelectedDetailDecoder : Json.Decoder RequestSelectedDetail
 requestSelectedDetailDecoder =
     Json.map2 RequestSelectedDetail
@@ -113,6 +155,7 @@ requestSelectedDetailDecoder =
         (Json.field "source" Json.string)
 
 
+{-| -}
 onRequestSelected : (RequestSelectedDetail -> msg) -> Attribute msg
 onRequestSelected tagger =
     on "request-selected" (Json.map tagger (Json.at [ "detail" ] requestSelectedDetailDecoder))
@@ -124,31 +167,37 @@ onRequestSelected tagger =
 -- snackbar
 
 
+{-| -}
 onSnackbarOpening : msg -> Attribute msg
 onSnackbarOpening tagger =
     on "MDCSnackbar:opening" (Json.succeed tagger)
 
 
+{-| -}
 onSnackbarOpend : msg -> Attribute msg
 onSnackbarOpend tagger =
     on "MDCSnackbar:opened" (Json.succeed tagger)
 
 
+{-| -}
 type alias SnackbarDetail =
     { reason : Maybe String }
 
 
+{-| -}
 snackbarDetailDecoder : Json.Decoder SnackbarDetail
 snackbarDetailDecoder =
     Json.map SnackbarDetail
         (Json.field "reason" (Json.maybe Json.string))
 
 
+{-| -}
 onSnackbarClosing : (SnackbarDetail -> msg) -> Attribute msg
 onSnackbarClosing tagger =
     on "MDCSnackbar:closing" (Json.map tagger (Json.at [ "detail" ] snackbarDetailDecoder))
 
 
+{-| -}
 onSnackbarClosed : (SnackbarDetail -> msg) -> Attribute msg
 onSnackbarClosed tagger =
     on "MDCSnackbar:closed" (Json.map tagger (Json.at [ "detail" ] snackbarDetailDecoder))
@@ -159,16 +208,19 @@ onSnackbarClosed tagger =
 --tab-bar
 
 
+{-| -}
 type alias TabBarDetail =
     { index : Int }
 
 
+{-| -}
 tabBarDetailDecoder : Json.Decoder TabBarDetail
 tabBarDetailDecoder =
     Json.map TabBarDetail
         (Json.field "index" Json.int)
 
 
+{-| -}
 onTabBarActivated : (TabBarDetail -> msg) -> Attribute msg
 onTabBarActivated tagger =
     on "MDCTabBar:activated" (Json.map tagger (Json.at [ "detail" ] tabBarDetailDecoder))
@@ -178,16 +230,19 @@ onTabBarActivated tagger =
 -- tab
 
 
+{-| -}
 type alias TabDetail =
     { tabId : String }
 
 
+{-| -}
 tabDetailDecoder : Json.Decoder TabDetail
 tabDetailDecoder =
     Json.map TabDetail
         (Json.field "tabId" Json.string)
 
 
+{-| -}
 onTabInteracted : (TabDetail -> msg) -> Attribute msg
 onTabInteracted tagger =
     on "MDCTab:interacted" (Json.map tagger (Json.at [ "detail" ] tabDetailDecoder))
@@ -197,6 +252,7 @@ onTabInteracted tagger =
 -- top-app-bar-fixed
 
 
+{-| -}
 onTopAppBarNav : msg -> Attribute msg
 onTopAppBarNav tagger =
     on "MDCTopAppBar:nav" (Json.succeed tagger)
