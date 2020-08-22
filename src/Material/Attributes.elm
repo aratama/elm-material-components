@@ -241,7 +241,7 @@ intProperty key =
 {-| -}
 slot : String -> Attribute msg
 slot =
-    attribute "icon"
+    attribute "slot"
 
 
 

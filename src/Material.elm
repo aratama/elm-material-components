@@ -69,10 +69,9 @@ import Html exposing (Attribute, Html, node)
 ![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/raised.png)
 ![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/raised_with_icon.png)
 
-```
-button [raised, label "standard"] []
-button [raised, label "standard", icon "code"] []
-```
+    button [ raised, label "standard" ] []
+
+    button [ raised, label "standard", icon "code" ] []
 
 -}
 button : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -220,7 +219,7 @@ textfield =
 
 {-|
 
-    mdc-top-app-bar-fixed
+    mdc - top - app - bar - fixed
 
 -}
 topAppBarFixed : List (Attribute msg) -> List (Html msg) -> Html msg
