@@ -38,6 +38,10 @@ This package is just a thin wrapper and don't include any JavaScript codes. Ther
 
 See also [example/package.json](examples/package.json) and [`example/src/index.js`](examples/src/index.js).
 
+## API Docs
+
+You can see [the docs via elm-docs-preview site](https://elm-doc-preview.netlify.app/?repo=aratama/elm-material-components).
+
 ## See also
 
 - [material-components-web-components](https://github.com/material-components/material-components-web-components)
