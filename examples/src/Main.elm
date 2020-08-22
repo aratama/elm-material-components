@@ -5,9 +5,8 @@ import Html exposing (Html, div, h1, h2, header, img, span, text)
 import Html.Attributes exposing (attribute, checked, class, disabled, id, max, min, name, src, style, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
 import Material exposing (button, checkbox, circularProgress, circularProgressFourColor, dialog, drawer, fab, formfield, iconButton, linearProgress, list, listItem, menu, radio, select, slider, snackbar, switch, tab, tabBar, textarea, textfield, topAppBar)
-import Material.Attributes exposing (dense, dialogAction, graphic, hasHeader, icon, indeterminate, label, labelText, max, open, outlined, raised, twoline, unelevated)
+import Material.Attributes exposing (dense, dialogAction, graphic, hasHeader, icon, indeterminate, label, labelText, max, open, outlined, raised, slot, twoline, unelevated)
 import Material.Events exposing (onClosed, onDrawerClosed)
-import Material.Slots exposing (Slot(..), appContent, navigationIcon, slot, subtitle, title)
 import Port exposing (showSnackbar)
 
 
@@ -96,13 +95,13 @@ update msg model =
 view : Model -> Html Msg
 view model =
     drawer [ type_ "modal", hasHeader, open model.drawerOpen, onDrawerClosed DrawerClosed ]
-        [ span [ slot title ] [ text "Drawer Title" ]
-        , span [ slot subtitle ] [ text "subtitle" ]
+        [ span [ slot "title" ] [ text "Drawer Title" ]
+        , span [ slot "subtitle" ] [ text "subtitle" ]
         , div [] [ text "Drawer Content" ]
-        , div [ slot appContent ]
+        , div [ slot "appContent" ]
             [ topAppBar []
-                [ iconButton [ slot navigationIcon, icon "menu", onClick OpenDrawer ] []
-                , div [ slot title ] [ text "elm-material-components" ]
+                [ iconButton [ slot "navigationIcon", icon "menu", onClick OpenDrawer ] []
+                , div [ slot "title" ] [ text "elm-material-components" ]
                 ]
             , div [ class "content" ]
                 [ h2 [] [ text "Button / Floating Action Button / Icon Button" ]
@@ -142,8 +141,8 @@ view model =
                         ]
                     , dialog [ open model.showDialog, onClosed DialogClosed ]
                         [ div [] [ text "Discard draft?" ]
-                        , button [ slot <| Slot "primaryAction", dialogAction "discard" ] [ text "Discard" ]
-                        , button [ slot <| Slot "secondaryAction", dialogAction "cancel" ] [ text "Cancel" ]
+                        , button [ slot "primaryAction", dialogAction "discard" ] [ text "Discard" ]
+                        , button [ slot "secondaryAction", dialogAction "cancel" ] [ text "Cancel" ]
                         ]
                     , snackbar [ id "message", labelText "Hello from snackbar!" ] []
                     ]

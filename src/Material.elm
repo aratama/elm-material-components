@@ -66,12 +66,12 @@ import Html exposing (Attribute, Html, node)
 
 # Example Usage
 
-![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/standard.png)
-![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/standard_with_icon.png)
+![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/raised.png)
+![](https://raw.githack.com/material-components/material-components-web-components/master/packages/button/images/raised_with_icon.png)
 
 ```
-button [label "standard"] []
-button [label "standard", icon "code"] []
+button [raised, label "standard"] []
+button [raised, label "standard", icon "code"] []
 ```
 
 -}

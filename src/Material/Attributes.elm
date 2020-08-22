@@ -205,7 +205,6 @@ module Material.Attributes exposing
 import Html exposing (Attribute)
 import Html.Attributes exposing (attribute)
 import Json.Encode as Json
-import Material.Graphic exposing (Graphic(..))
 import VirtualDom
 
 
@@ -541,9 +540,9 @@ activated =
 
 
 {-| -}
-graphic : Graphic -> Attribute msg
-graphic (Graphic graph) =
-    attribute "graphic" graph
+graphic : String -> Attribute msg
+graphic =
+    attribute "graphic"
 
 
 {-| -}
