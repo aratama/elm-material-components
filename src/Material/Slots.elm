@@ -115,3 +115,17 @@ meta =
 secondary : Slot
 secondary =
     Slot "secondary"
+
+
+
+-- slider
+
+
+action : Slot
+action =
+    Slot "action"
+
+
+dismiss : Slot
+dismiss =
+    Slot "dismiss"

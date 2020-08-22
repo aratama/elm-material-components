@@ -98,3 +98,87 @@ requestSelectedDetailDecoder =
 onRequestSelected : (RequestSelectedDetail -> msg) -> Attribute msg
 onRequestSelected tagger =
     on "request-selected" (Json.map tagger (Json.at [ "detail" ] requestSelectedDetailDecoder))
+
+
+
+-- menu
+-- radio
+-- snackbar
+
+
+onSnackbarOpening : msg -> Attribute msg
+onSnackbarOpening tagger =
+    on "MDCSnackbar:opening" (Json.succeed tagger)
+
+
+onSnackbarOpend : msg -> Attribute msg
+onSnackbarOpend tagger =
+    on "MDCSnackbar:opened" (Json.succeed tagger)
+
+
+type alias SnackbarDetail =
+    { reason : Maybe String }
+
+
+snackbarDetailDecoder : Json.Decoder SnackbarDetail
+snackbarDetailDecoder =
+    Json.map SnackbarDetail
+        (Json.field "reason" (Json.maybe Json.string))
+
+
+onSnackbarClosing : (SnackbarDetail -> msg) -> Attribute msg
+onSnackbarClosing tagger =
+    on "MDCSnackbar:closing" (Json.map tagger (Json.at [ "detail" ] snackbarDetailDecoder))
+
+
+onSnackbarClosed : (SnackbarDetail -> msg) -> Attribute msg
+onSnackbarClosed tagger =
+    on "MDCSnackbar:closed" (Json.map tagger (Json.at [ "detail" ] snackbarDetailDecoder))
+
+
+
+-- switch
+--tab-bar
+
+
+type alias TabBarDetail =
+    { index : Int }
+
+
+tabBarDetailDecoder : Json.Decoder TabBarDetail
+tabBarDetailDecoder =
+    Json.map TabBarDetail
+        (Json.field "index" Json.int)
+
+
+onTabBarActivated : (TabBarDetail -> msg) -> Attribute msg
+onTabBarActivated tagger =
+    on "MDCTabBar:activated" (Json.map tagger (Json.at [ "detail" ] tabBarDetailDecoder))
+
+
+
+-- tab
+
+
+type alias TabDetail =
+    { tabId : String }
+
+
+tabDetailDecoder : Json.Decoder TabDetail
+tabDetailDecoder =
+    Json.map TabDetail
+        (Json.field "tabId" Json.string)
+
+
+onTabInteracted : (TabDetail -> msg) -> Attribute msg
+onTabInteracted tagger =
+    on "MDCTab:interacted" (Json.map tagger (Json.at [ "detail" ] tabDetailDecoder))
+
+
+
+-- top-app-bar-fixed
+
+
+onTopAppBarNav : msg -> Attribute msg
+onTopAppBarNav tagger =
+    on "MDCTopAppBar:nav" (Json.succeed tagger)
